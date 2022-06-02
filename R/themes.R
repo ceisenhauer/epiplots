@@ -1,0 +1,55 @@
+#' Clean ggplot Theme
+#' 
+#' @description Adds base theme to a `ggplot`; intended to be publication ready.
+#' 
+#' @param base_size `int` Base size of the theme (for text sizing). Default is 14.
+#' @param legend_x `dbl` Horizontal legend location. Default is NULL.
+#' @param legend_y `dbl` Vertical legend location. Default is NULL.
+#' @param lines `bool` Whether to plot y-axis grid lines. Default is FALSE.
+#' @param title_hjust `dbl` Alignment of the plot title. Default is left aligned.
+#' @param subtitle_hjust `dbl` Alignment of the subtitle. Default is to match the alignment 
+#'   of the title.
+#'  
+#' @return `ggplot` with base theme
+#' 
+#' @importFrom ggplot2 theme theme_classic element_text element_blank %+replace%
+#' 
+#' @export
+theme_clean <- function(base_size = 20, legend_x = NULL, legend_y = NULL, lines = FALSE,
+                        title_hjust = 0, subtitle_hjust = title_hjust) {
+ if (lines) {
+    panel_grid <- ggplot2::element_line(color = 'grey',
+                               linetype = 'dashed')
+  } else {
+    panel_grid <- ggplot2::element_blank()
+  } 
+
+  out <- ggplot2::theme_classic(base_size = base_size) %+replace%
+
+         ggplot2::theme(plot.title = ggplot2::element_text(size = base_size,
+                                                           face = 'bold',
+                                                           hjust = title_hjust),
+                        plot.subtitle = ggplot2::element_text(size = base_size * 0.9,
+                                                              color = 'darkgrey',
+                                                              hjust = subtitle_hjust),
+                        plot.caption = ggplot2::element_text(size = base_size * 0.75,
+                                                             color = 'darkgrey',
+                                                             face = 'italic',
+                                                             hjust = 1),
+
+                        axis.title = ggplot2::element_text(size = base_size * 0.85,
+                                                           face = 'bold'),
+                        axis.text = ggplot2::element_text(size = base_size * 0.8),
+                        axis.line = ggplot2::element_blank(),
+
+                        legend.position = c(legend_x, legend_y),
+                        legend.text = ggplot2::element_text(size = base_size * 0.75),
+                        legend.title = ggplot2::element_text(size = base_size * 0.8,
+                                                             face = 'bold'),
+
+                        panel.grid.major.y = panel_grid
+         )
+
+  return(out)
+}
+
