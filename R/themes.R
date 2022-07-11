@@ -37,9 +37,9 @@ theme_clean <- function(base_size = 20, legend_x = NULL, legend_y = NULL, lines 
                                                              face = 'italic',
                                                              hjust = 1),
 
-                        axis.title = ggplot2::element_text(size = base_size * 0.85,
+                        axis.title = ggplot2::element_text(size = base_size * 0.9,
                                                            face = 'bold'),
-                        axis.text = ggplot2::element_text(size = base_size * 0.8),
+                        axis.text = ggplot2::element_text(size = base_size * 0.9),
                         axis.line = ggplot2::element_blank(),
 
                         legend.position = c(legend_x, legend_y),
