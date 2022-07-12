@@ -13,5 +13,11 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports:
+    dplyr,
     ggplot2,
-    scales
+    ggrepel,
+    methods,
+    RColorBrewer,
+    rlang,
+    scales,
+    sf
