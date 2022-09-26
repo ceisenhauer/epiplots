@@ -16,8 +16,7 @@ Imports:
     dplyr,
     ggplot2,
     ggrepel,
-    methods,
     RColorBrewer,
     rlang,
     scales,
-    sf
+    tinker
