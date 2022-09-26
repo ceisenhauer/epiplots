@@ -25,9 +25,15 @@
     <loc>/reference/index.html</loc>
   </url>
   <url>
+    <loc>/reference/plot_map.html</loc>
+  </url>
+  <url>
     <loc>/reference/second_axis.html</loc>
   </url>
   <url>
     <loc>/reference/theme_clean.html</loc>
+  </url>
+  <url>
+    <loc>/reference/theme_map.html</loc>
   </url>
 </urlset>
