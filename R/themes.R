@@ -53,3 +53,28 @@ theme_clean <- function(base_size = 20, legend_x = NULL, legend_y = NULL, lines 
   return(out)
 }
 
+#' Add the basic map theme to a ggplot map
+#' 
+#' @description Adds base map theme to a `ggplot`; intended to be publication ready.
+#' 
+#' @param base_size `int` Base size of the theme (for text sizing).
+#' @param title_hjust `num` Hjust.
+#'  
+#' @return `ggplot` with base map theme
+#' 
+#' @importFrom ggplot2 theme element_blank %+replace%
+#' @export
+theme_map <- function(base_size = 20, title_hjust = 0) {
+  out <- theme_clean(base_size = base_size,
+                     title_hjust = title_hjust) %+replace%
+
+         theme(axis.line = element_blank(),
+               axis.title = element_blank(),
+               axis.text = element_blank(),
+               axis.ticks = element_blank(),
+
+               legend.position = 'bottom'
+         )
+
+  return(out)
+}
