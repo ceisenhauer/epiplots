@@ -164,11 +164,3 @@ plot_map <- function(df, x, map, x_range = NULL, date = NULL,
   return(p)
 }
 
-r <- 'kasai_oriental'
-
-df %>%
-  filter(reg == r) %>%
-  plot_map(x = 'cases',
-           map = drc %>% filter(reg == r),
-           label = TRUE,
-           label_column = 'zone')
