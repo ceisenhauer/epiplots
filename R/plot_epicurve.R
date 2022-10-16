@@ -43,7 +43,7 @@ plot_epicurve <- function(df, y = 'cases', x = 'date',
   }
 
   df <- df %>%
-          group_by(.data$date) %>%
+          group_by(.data[[x]]) %>%
           summarize(aggregated = sum(.data[[y]], na.rm = TRUE))
 
   df[[y]] <- df$aggregated
