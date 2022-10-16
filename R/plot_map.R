@@ -4,12 +4,12 @@
 #' 
 #' @param df `dataframe / tibble / datatable` Dataset.
 #' @param x `chr` Column name of variable to be plotted in the choropleth.
+#' @param map `sf` An optional simple features dataset containing GIS data to join with df if
+#'   not using one of the default maps.
 #' @param x_range `vector` Min and max value to be used when setting the color scale of `x`. If NULL,
 #'   the min and max observed in `x` will be used. Default is NULL.
 #' @param date `date` Date to be plotted. If NULL, the most recent available date is used. Default 
 #'   is NULL.
-#' @param map `sf` An optional simple features dataset containing GIS data to join with df if
-#'   not using one of the default maps. Default is NULL.
 #' @param factor_palette `vector` Named list of colors (values) and label names (keys) to use for 
 #'   the color scale. This option is intended for categorical variables and if present `plot_map()`
 #'   will ignore `n_breaks` and `color_palette`.
@@ -44,11 +44,11 @@
 #' @importFrom rlang .data
 #' @importFrom tinker si_format french_format
 #' @export
-plot_map <- function(df, x, x_range = NULL, date = NULL, map = NULL, 
+plot_map <- function(df, x, map, x_range = NULL, date = NULL,  
                      factor_palette = NULL,
                      color_palette = NULL, n_breaks = 5, 
                      na_color = 'grey',
-                     border_color = "white", border_size = 0, 
+                     border_color = 'black', border_size = 0.2, 
                      percent = FALSE, si_notation = TRUE,
                      keywidth = 70,
                      label = FALSE, label_column = 'label', label_size = 3,
@@ -100,10 +100,7 @@ plot_map <- function(df, x, x_range = NULL, date = NULL, map = NULL,
     legend_labels[[1]] <- legend_labels[[1]] %>% paste('\u2264', .)
 
     if (is.null(color_palette)) {
-      color_palette <- brewer.pal(length(legend_labels), 'YlOrRd')
-      # color_palette <- centered_palette(legend_labels,
-      #                                   n_breaks,
-      #                                   show_palette = FALSE)
+      color_palette <- brewer.pal(length(legend_labels), 'Blues')
     }
 
     color_scale <- scale_fill_manual(breaks = rev(levels(map_data[[x]])),
@@ -137,7 +134,8 @@ plot_map <- function(df, x, x_range = NULL, date = NULL, map = NULL,
   # build map -----
   p <- map_data %>%
          ggplot2::ggplot() +
-         #ggplot2::geom_sf(fill = na_color) +
+         ggplot2::geom_sf(fill = na_color,
+                          size = 0) +
          ggplot2::geom_sf(ggplot2::aes_string(fill = x),
                           color = border_color,
                           size = border_size) +
@@ -166,4 +164,11 @@ plot_map <- function(df, x, x_range = NULL, date = NULL, map = NULL,
   return(p)
 }
 
+r <- 'kasai_oriental'
 
+df %>%
+  filter(reg == r) %>%
+  plot_map(x = 'cases',
+           map = drc %>% filter(reg == r),
+           label = TRUE,
+           label_column = 'zone')
