@@ -7,15 +7,15 @@
 plot_map(
   df,
   x,
+  map,
   x_range = NULL,
   date = NULL,
-  map = NULL,
   factor_palette = NULL,
   color_palette = NULL,
   n_breaks = 5,
   na_color = "grey",
-  border_color = "white",
-  border_size = 0,
+  border_color = "black",
+  border_size = 0.2,
   percent = FALSE,
   si_notation = TRUE,
   keywidth = 70,
@@ -33,14 +33,14 @@ plot_map(
 
 \item{x}{\code{chr} Column name of variable to be plotted in the choropleth.}
 
+\item{map}{\code{sf} An optional simple features dataset containing GIS data to join with df if
+not using one of the default maps.}
+
 \item{x_range}{\code{vector} Min and max value to be used when setting the color scale of \code{x}. If NULL,
 the min and max observed in \code{x} will be used. Default is NULL.}
 
 \item{date}{\code{date} Date to be plotted. If NULL, the most recent available date is used. Default
 is NULL.}
-
-\item{map}{\code{sf} An optional simple features dataset containing GIS data to join with df if
-not using one of the default maps. Default is NULL.}
 
 \item{factor_palette}{\code{vector} Named list of colors (values) and label names (keys) to use for
 the color scale. This option is intended for categorical variables and if present \code{plot_map()}
