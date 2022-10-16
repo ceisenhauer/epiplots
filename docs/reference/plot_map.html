@@ -45,15 +45,15 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plot_map</span><span class="op">(</span>
   <span class="va">df</span>,
   <span class="va">x</span>,
+  <span class="va">map</span>,
   x_range <span class="op">=</span> <span class="cn">NULL</span>,
   date <span class="op">=</span> <span class="cn">NULL</span>,
-  map <span class="op">=</span> <span class="cn">NULL</span>,
   factor_palette <span class="op">=</span> <span class="cn">NULL</span>,
   color_palette <span class="op">=</span> <span class="cn">NULL</span>,
   n_breaks <span class="op">=</span> <span class="fl">5</span>,
   na_color <span class="op">=</span> <span class="st">"grey"</span>,
-  border_color <span class="op">=</span> <span class="st">"white"</span>,
-  border_size <span class="op">=</span> <span class="fl">0</span>,
+  border_color <span class="op">=</span> <span class="st">"black"</span>,
+  border_size <span class="op">=</span> <span class="fl">0.2</span>,
   percent <span class="op">=</span> <span class="cn">FALSE</span>,
   si_notation <span class="op">=</span> <span class="cn">TRUE</span>,
   keywidth <span class="op">=</span> <span class="fl">70</span>,
@@ -73,15 +73,15 @@
 <dd><p><code>dataframe / tibble / datatable</code> Dataset.</p></dd>
 <dt>x</dt>
 <dd><p><code>chr</code> Column name of variable to be plotted in the choropleth.</p></dd>
+<dt>map</dt>
+<dd><p><code>sf</code> An optional simple features dataset containing GIS data to join with df if
+not using one of the default maps.</p></dd>
 <dt>x_range</dt>
 <dd><p><code>vector</code> Min and max value to be used when setting the color scale of <code>x</code>. If NULL,
 the min and max observed in <code>x</code> will be used. Default is NULL.</p></dd>
 <dt>date</dt>
 <dd><p><code>date</code> Date to be plotted. If NULL, the most recent available date is used. Default
 is NULL.</p></dd>
-<dt>map</dt>
-<dd><p><code>sf</code> An optional simple features dataset containing GIS data to join with df if
-not using one of the default maps. Default is NULL.</p></dd>
 <dt>factor_palette</dt>
 <dd><p><code>vector</code> Named list of colors (values) and label names (keys) to use for
 the color scale. This option is intended for categorical variables and if present <code>plot_map()</code>
