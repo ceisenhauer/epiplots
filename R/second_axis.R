@@ -20,7 +20,7 @@
 #' @importFrom scales percent_format
 #' 
 #' @export
-second_axis <- function(scale_factor, percent = FALSE, digits = 0, formatter = NULL,
+second_axis <- function(scale_factor, percent = FALSE, digits = 0, formatter = NULL, breaks = NULL,
                         title = NULL, color = '#c5c5c5') {
 
   labels <- ifelse(percent,
@@ -28,6 +28,7 @@ second_axis <- function(scale_factor, percent = FALSE, digits = 0, formatter = N
                    formatter)
 
   axis_scale <- ggplot2::sec_axis(~ ./scale_factor,
+                                  breaks = breaks,
                                   labels = labels,
                                   name = title)
 
