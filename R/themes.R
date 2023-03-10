@@ -15,7 +15,8 @@
 #' @importFrom ggplot2 theme theme_classic element_text element_blank %+replace%
 #' 
 #' @export
-theme_clean <- function(base_size = 20, legend_x = NULL, legend_y = NULL, lines = FALSE,
+theme_clean <- function(base_size = 20, legend_position = 'top', legend_x = NULL, legend_y = NULL,
+                        lines = FALSE, 
                         title_hjust = 0, subtitle_hjust = title_hjust) {
  if (lines) {
     panel_grid <- ggplot2::element_line(color = 'grey',
@@ -23,6 +24,10 @@ theme_clean <- function(base_size = 20, legend_x = NULL, legend_y = NULL, lines 
   } else {
     panel_grid <- ggplot2::element_blank()
   } 
+
+  if (!is.null(legend_x) & !is.null(legend_y)) {
+    legend_position = c(legend_x, legend_y)
+  }
 
   out <- ggplot2::theme_classic(base_size = base_size) %+replace%
 
@@ -42,12 +47,17 @@ theme_clean <- function(base_size = 20, legend_x = NULL, legend_y = NULL, lines 
                         axis.text = ggplot2::element_text(size = base_size * 0.9),
                         axis.line = ggplot2::element_blank(),
 
-                        legend.position = c(legend_x, legend_y),
+                        legend.position = legend_position,
                         legend.text = ggplot2::element_text(size = base_size * 0.75),
                         legend.title = ggplot2::element_text(size = base_size * 0.8,
                                                              face = 'bold'),
 
-                        panel.grid.major.y = panel_grid
+                        panel.grid.major.y = panel_grid,
+
+                        plot.margin = ggplot2::margin(0.5, 1, 0.5, 0.5, 'cm'),
+
+                        text = element_text(family = 'arial')
+
          )
 
   return(out)
