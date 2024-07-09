@@ -6,6 +6,7 @@
 \usage{
 theme_clean(
   base_size = 20,
+  legend_position = "top",
   legend_x = NULL,
   legend_y = NULL,
   lines = FALSE,
@@ -15,6 +16,8 @@ theme_clean(
 }
 \arguments{
 \item{base_size}{\code{int} Base size of the theme (for text sizing). Default is 14.}
+
+\item{legend_position}{\code{chr} \code{ggplot2} style position for plot legend. Default is 'top'.}
 
 \item{legend_x}{\code{dbl} Horizontal legend location. Default is NULL.}
 

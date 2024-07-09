@@ -9,6 +9,7 @@ second_axis(
   percent = FALSE,
   digits = 0,
   formatter = NULL,
+  breaks = NULL,
   title = NULL,
   color = "#c5c5c5"
 )
@@ -24,6 +25,9 @@ axis}
 
 \item{formatter}{\code{fct} Formatter to use for axis labels. This option is superceeded when
 \code{percent} is \code{TRUE}.}
+
+\item{breaks}{\code{int} Number of breaks to use in the left and right axes, passed to
+\code{\link[ggplot2:sec_axis]{ggplot2::sec_axis}}. Default is to let the breaks be chosen automatically (NULL).}
 
 \item{title}{\code{str} Axis title. Default is NULL.}
 
