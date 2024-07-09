@@ -3,6 +3,7 @@
 #' @description Adds base theme to a `ggplot`; intended to be publication ready.
 #' 
 #' @param base_size `int` Base size of the theme (for text sizing). Default is 14.
+#' @param legend_position `chr` `ggplot2` style position for plot legend. Default is 'top'.
 #' @param legend_x `dbl` Horizontal legend location. Default is NULL.
 #' @param legend_y `dbl` Vertical legend location. Default is NULL.
 #' @param lines `bool` Whether to plot y-axis grid lines. Default is FALSE.
@@ -54,14 +55,13 @@ theme_clean <- function(base_size = 20, legend_position = 'top', legend_x = NULL
 
                         panel.grid.major.y = panel_grid,
 
-                        plot.margin = ggplot2::margin(0.5, 1, 0.5, 0.5, 'cm'),
-
-                        text = element_text(family = 'arial')
-
+                        plot.margin = ggplot2::margin(0.5, 1, 0.5, 0.5, 'cm')
          )
 
   return(out)
 }
+
+
 
 #' Add the basic map theme to a ggplot map
 #' 
@@ -84,6 +84,45 @@ theme_map <- function(base_size = 20, title_hjust = 0) {
                axis.ticks = element_blank(),
 
                legend.position = 'bottom'
+         )
+
+  return(out)
+}
+
+
+
+#' Add the basic pyramid theme to a ggplot
+#' 
+#' @description Adds base pyramid theme to a `ggplot`; intended to be publication ready. Note, the 
+#' final pyramid plot is actually a grid of three plots, so this theme is to be used for each.
+#' 
+#' @param base_size `int` Base size of the theme (for text sizing).
+#' @param color `chr` Color to be used for the horizontal axis. Default is 'black'.
+#'  
+#' @return `ggplot` with base pyramid theme
+#' 
+#' @importFrom ggplot2 theme element_text element_line element_blank %+replace%
+#' @importFrom grid unit
+#' @export
+theme_pyramid <- function(base_size = 20, color = 'black') {
+  out <- theme_clean(base_size = base_size) %+replace%
+
+         theme(plot.title = element_text(size = base_size * 1,
+                                         family = 'arial',
+                                         face = 'bold',
+                                         color = color,
+                                         hjust = .5),
+               axis.title.y = element_blank(),
+               axis.text.y = element_blank(),
+               axis.ticks.y = element_blank(),
+               axis.title.x = element_blank(),
+               axis.text.x = element_text(color = color,
+                                          family = 'arial'),
+               axis.ticks.x = element_line(color = color),
+
+               legend.position = 'none', 
+
+               plot.margin = unit(c(0.5, 0.5, 0.5, 0.5), "cm")
          )
 
   return(out)

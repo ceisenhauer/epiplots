@@ -11,6 +11,8 @@
 #' @param digits `int` Number of decimal digits to use when `percent` is `TRUE`. Default is 0.
 #' @param formatter `fct` Formatter to use for axis labels. This option is superceeded when 
 #'   `percent` is `TRUE`. 
+#' @param breaks `int` Number of breaks to use in the left and right axes, passed to
+#'   [`ggplot2::sec_axis`]. Default is to let the breaks be chosen automatically (NULL).
 #' @param title `str` Axis title. Default is NULL.
 #' @param color `str` Axis color (ticks, title, values). Default is grey (#c5c5c5). 
 #' 

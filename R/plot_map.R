@@ -64,8 +64,9 @@ plot_map <- function(df, x, map, x_range = NULL, date = NULL,
   }
 
   map_data <- map %>%
-                left_join(df,
-                          sort = FALSE)
+                dplyr::left_join(df)
+                #left_join(df,
+                          #sort = FALSE)
 
   # customize color palette -----
   if (is.null(factor_palette)) {
@@ -94,13 +95,13 @@ plot_map <- function(df, x, map, x_range = NULL, date = NULL,
     }
 
     if (percent) {
-      legend_labels <- lapply(breaks[-1], function(x) french_format(x, percent = TRUE))
+      legend_labels <- lapply(breaks[-1], function(x) tinker::french_format(x, percent = TRUE))
     }
 
     legend_labels[[1]] <- legend_labels[[1]] %>% paste('\u2264', .)
 
     if (is.null(color_palette)) {
-      color_palette <- brewer.pal(length(legend_labels), 'Blues')
+      color_palette <- RColorBrewer::brewer.pal(length(legend_labels), 'Blues')
     }
 
     color_scale <- scale_fill_manual(breaks = rev(levels(map_data[[x]])),

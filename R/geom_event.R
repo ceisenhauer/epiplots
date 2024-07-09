@@ -18,18 +18,6 @@
 #' 
 #' @return `ggplot` geom
 #' 
-#' @examples
-#' library(dplyr)
-#' tmp <- df_age %>%
-#'          filter(age == '90+')
-#' 
-#' tmp %>%
-#'   plot_timeseries(x = 'date',
-#'                 y = 'p') +
-#'   geom_threshold(line_position = as.Date('2020-10-01'),
-#'                  label = 'Policy Change',
-#'                  label_position = max(tmp$p) * 0.8)
-#' 
 #' @importFrom ggplot2 aes geom_vline geom_hline annotate theme_get aes_string
 #' @importFrom ggrepel geom_text_repel
 #' @export
